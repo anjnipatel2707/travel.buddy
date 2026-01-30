@@ -3,52 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AuraTravel | Expert Architect</title>
+    <title>AuraTravel | Architect</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
-    <section id="landing">
-        <div class="hero-content">
-            <h1>EXPLORE <br><span class="gold-text">DREAM</span><br> DESTINATIONS</h1>
+    <main class="hero-landing">
+        <div class="content-layer">
+            <h1>EXPLORE <br><span class="gold">DREAM</span><br> DESTINATIONS</h1>
             <p>Your journey, curated by AI.</p>
-            <div class="main-nav">
-                <button onclick="openPage('planner')">PLAN TRIP</button>
-                <button onclick="openPage('budget')">BUDGET</button>
-                <button onclick="openPage('gallery')">GALLERY</button>
-                <button onclick="openPage('map')">ROUTE MAP</button>
-            </div>
+            <nav class="pill-nav">
+                <button onclick="openTab('planner')">PLAN TRIP</button>
+                <button onclick="openTab('budget')">BUDGET</button>
+                <button onclick="openTab('gallery')">MEMORY MAP</button>
+                <button onclick="openTab('route')">ROUTE MAP</button>
+            </nav>
         </div>
-        <div class="collage-bg">
-            <div class="polaroid p1"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=400"><span>Paris</span></div>
-            <div class="polaroid p2"><img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=400"><span>Santorini</span></div>
-        </div>
-    </section>
+    </main>
 
-    <div id="planner" class="page-overlay">
-        <div class="page-content">
-            <button class="close-btn" onclick="closePage('planner')">✕</button>
-            <h2>AI Route Architect</h2>
-            <input type="text" id="city" placeholder="City Name">
-            <input type="number" id="days" placeholder="Number of Days">
-            <textarea id="must-visit" placeholder="Specific places or vibes you want to incorporate?"></textarea>
+    <div id="planner" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeTab('planner')">✕</span>
+            <h2 class="gold">AI Route Architect</h2>
+            <div class="input-row">
+                <input type="text" id="city" placeholder="Target City (e.g. Rome)">
+                <input type="number" id="days" placeholder="Days">
+            </div>
+            <textarea id="must-visit" placeholder="Specific interests? (e.g. Brutalist architecture, local pasta, hidden gardens)"></textarea>
             <button class="gold-btn" onclick="generateDeepPlan()">GENERATE ITINERARY</button>
-            <div id="itinerary-output" class="result-area"></div>
+            <div id="itinerary-output" class="scroll-area"></div>
         </div>
     </div>
 
-    <div id="budget" class="page-overlay">
-        <div class="page-content">
-            <button class="close-btn" onclick="closePage('budget')">✕</button>
-            <h2>Financial Tracker</h2>
-            <canvas id="budgetChart"></canvas>
-            <div class="budget-form">
-                <input type="number" id="total-limit" placeholder="Total Budget ($)">
-                <input type="number" id="current-spent" placeholder="Amount Spent ($)">
-                <button class="gold-btn" onclick="updateChart()">LOG EXPENSES</button>
+    <div id="budget" class="modal">
+        <div class="modal-box">
+            <span class="close" onclick="closeTab('budget')">✕</span>
+            <h2 class="gold">Financial Architect</h2>
+            <div class="tracker-layout">
+                <div class="chart-container">
+                    <canvas id="financeChart"></canvas>
+                </div>
+                <div class="form-container">
+                    <select id="currency">
+                        <option value="$">USD ($)</option>
+                        <option value="€">EUR (€)</option>
+                        <option value="£">GBP (£)</option>
+                    </select>
+                    <input type="number" id="total" placeholder="Total Budget Limit">
+                    <input type="number" id="spent" placeholder="Total Spent So Far">
+                    <button class="gold-btn" onclick="updateFinance()">UPDATE TRACKER</button>
+                </div>
             </div>
+        </div>
+    </div>
+
+    <div id="gallery" class="modal">
+        <div class="modal-box map-modal">
+            <span class="close" onclick="closeTab('gallery')">✕</span>
+            <h2 class="gold">Memory Map</h2>
+            <div class="map-controls">
+                <input type="text" id="map-search" placeholder="Search a place (e.g. Pantheon)">
+                <button onclick="searchAndPin()">PIN LOCATION</button>
+                <button onclick="alert('Select multiple images to upload...')">+ ADD PHOTOS</button>
+            </div>
+            <div id="memory-map-container"></div>
         </div>
     </div>
 
