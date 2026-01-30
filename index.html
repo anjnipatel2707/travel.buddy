@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraTravel | Your AI Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+
+    <section id="main-screen" class="active">
+        <div class="hero">
+            <h1>Where to next?</h1>
+            <p>Your journey, curated by AI.</p>
+        </div>
+        
+        <div class="gallery-preview">
+            <div class="img-card" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400')"></div>
+            <div class="img-card" style="background-image: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?auto=format&fit=crop&w=400')"></div>
+            <div class="img-card" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8bef99c02?auto=format&fit=crop&w=400')"></div>
+        </div>
+
+        <nav class="main-nav">
+            <button onclick="showScreen('plan-trip')">Plan Trip</button>
+            <button onclick="showScreen('budget')">Budget</button>
+            <button onclick="showScreen('photo-gallery')">Photo Gallery</button>
+            <button onclick="showScreen('map-view')">Route Map</button>
+        </nav>
+    </section>
+
+    <section id="plan-trip" class="hidden">
+        <button class="back-btn" onclick="showScreen('main-screen')">← Back</button>
+        <h2>AI Trip Planner</h2>
+        <div class="form-group">
+            <input type="text" id="destination" placeholder="Enter City/Country">
+            <input type="number" id="days" placeholder="Number of Days">
+            <button onclick="generatePlan()">Generate Itinerary</button>
+        </div>
+        <div id="itinerary-result" class="result-box"></div>
+    </section>
+
+    <section id="budget" class="hidden">
+        <button class="back-btn" onclick="showScreen('main-screen')">← Back</button>
+        <h2>Expense Tracker & AI Saver</h2>
+        <div class="budget-input">
+            <input type="number" id="total-budget" placeholder="Set Total Budget ($)">
+            <input type="text" id="expense-name" placeholder="Item (e.g., Coffee)">
+            <input type="number" id="expense-amt" placeholder="Amount ($)">
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+        <div id="budget-summary"></div>
+    </section>
+
+    <section id="photo-gallery" class="hidden">
+        <button class="back-btn" onclick="showScreen('main-screen')">← Back</button>
+        <h2>Memory Map</h2>
+        <p>Click on the map to pin a photo!</p>
+        <div id="photo-map" style="height: 400px;"></div>
+    </section>
+
+    <section id="map-view" class="hidden">
+        <button class="back-btn" onclick="showScreen('main-screen')">← Back</button>
+        <h2>Day-wise Route</h2>
+        <div id="route-map" style="height: 500px;"></div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
