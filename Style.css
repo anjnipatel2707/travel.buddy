@@ -1,0 +1,64 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+section { padding: 20px; transition: 0.3s; }
+.hidden { display: none; }
+.active { display: block; }
+
+.hero {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=1200');
+    background-size: cover;
+    color: white;
+    border-radius: 0 0 20px 20px;
+}
+
+.gallery-preview {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 20px 0;
+}
+
+.img-card {
+    min-width: 150px;
+    height: 200px;
+    border-radius: 15px;
+    background-size: cover;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.main-nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #2d3436;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover { background: #0984e3; }
+
+.result-box {
+    margin-top: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #0984e3;
+}
