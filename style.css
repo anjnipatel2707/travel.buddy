@@ -1,36 +1,44 @@
-:root { --gold: #d4af37; --teal: #006666; --bg: #0a0a0a; }
-
-body { margin: 0; background: var(--bg); color: white; font-family: 'Inter', sans-serif; }
-
-#landing {
+.hero-landing {
     height: 100vh;
-    display: flex; align-items: center; justify-content: space-around;
-    background: radial-gradient(circle, #004d4d 0%, #0a0a0a 100%);
-    overflow: hidden;
+    width: 100%;
+    /* Use the high-res original source from your Pinterest link */
+    background-image: url('https://i.pinimg.com/originals/7e/8a/0a/7e8a0a80e1c3e3818617d3d7c588e336.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* PREVENTS INTERACTION: Image cannot be clicked, dragged, or saved */
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
-.gold-text { color: var(--gold); }
-h1 { font-size: 4.5rem; line-height: 0.9; }
-
-/* Polaroid Collage Effect */
-.polaroid {
-    background: white; padding: 10px 10px 30px 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    transform: rotate(-5deg); transition: 0.3s;
-}
-.polaroid img { width: 200px; height: 150px; object-fit: cover; }
-.polaroid span { color: black; font-family: 'Brush Script MT', cursive; font-size: 1.5rem; }
-
-/* Page Overlays */
-.page-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(10,10,10,0.98); z-index: 1000;
-    display: none;
-}
-.page-content {
-    max-width: 800px; margin: 50px auto;
-    padding: 40px; background: #1a1a1a;
-    border-left: 4px solid var(--gold);
+/* Protection Layer: Stops right-click save and helps text readability */
+.hero-landing::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15); /* Very light tint for that 'Magazine' feel */
+    z-index: 1;
+    pointer-events: none;
 }
 
-.gold-btn { background: var(--gold); color: black; border: none; padding: 15px; width: 100%; font-weight: bold; cursor: pointer; }
+.content-layer {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+
+/* Aesthetic Typography */
+h1 {
+    font-size: 5.5rem;
+    font-weight: 900;
+    line-height: 0.85;
+    color: white;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+}
